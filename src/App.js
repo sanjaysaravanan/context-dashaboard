@@ -1,23 +1,26 @@
-import logo from './logo.svg';
+import React from 'react';
+
+import { Typography } from '@mui/material';
+
+import ThemeContext from './ThemeContext';
 import './App.css';
+import ChildComponent from './ChildComp';
+import ChildTwo from './ChildTwo';
 
 function App() {
+
+  const [value, setThemeValue] = React.useState({
+    mode: 'light',
+    color: 'red',
+  });
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ThemeContext.Provider value={{ value, setThemeValue }}>
+        <Typography variant='h1'>Context</Typography>
+        <ChildComponent />
+        <ChildTwo />
+      </ThemeContext.Provider>
     </div>
   );
 }
